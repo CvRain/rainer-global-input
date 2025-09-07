@@ -1,3 +1,6 @@
 .vscode
 demo/.godot
 demo/.godot/*
+.cache
+.sconsign.dblite
+compile_commands.json
