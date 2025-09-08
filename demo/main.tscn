@@ -1,5 +1,11 @@
-[gd_scene format=3 uid="uid://ljvinuojv6vl"]
+[gd_scene load_steps=2 format=3 uid="uid://ljvinuojv6vl"]
+
+[ext_resource type="Script" uid="uid://be0uxo50pq43a" path="res://main.gd" id="1_ig7tw"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
 
 [node name="GlobalInput" type="GlobalInput" parent="."]
+
+[connection signal="key_pressed" from="GlobalInput" to="." method="_on_global_input_key_pressed"]
+[connection signal="key_pressed_named" from="GlobalInput" to="." method="_on_global_input_key_pressed_named"]

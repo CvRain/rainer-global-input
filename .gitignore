@@ -4,3 +4,5 @@ demo/.godot/*
 .cache
 .sconsign.dblite
 compile_commands.json
+src/*.obj
+.vs
