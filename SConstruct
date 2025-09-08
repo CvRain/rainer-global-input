@@ -71,6 +71,8 @@ if os.path.exists(gdextension_source):
         # Replace references to gdexample with rainer_global_input
         content = content.replace("gdexample", "rainer_global_input")
         content = content.replace("libgdexample", "librainer_global_input")
+        # Fix the paths to point to the correct build directory structure
+        content = content.replace("res://bin/", "res://bin/{}/".format(output_subdir))
         dst.write(content)
 
 Default(library)
