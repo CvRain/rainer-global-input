@@ -6,6 +6,13 @@
 script = ExtResource("1_ig7tw")
 
 [node name="GlobalInput" type="GlobalInput" parent="."]
-
-[connection signal="key_pressed" from="GlobalInput" to="." method="_on_global_input_key_pressed"]
-[connection signal="key_pressed_named" from="GlobalInput" to="." method="_on_global_input_key_pressed_named"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null

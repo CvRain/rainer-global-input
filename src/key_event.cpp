@@ -124,27 +124,73 @@ String WindowsKeyMapping::get_key_name(int keycode) const {
     }
 }
 
-// Linux键码映射实现 (简化示例)
+// Linux键码映射实现 (基于X11键码定义)
 String LinuxKeyMapping::get_key_name(int keycode) const {
-    // 这里应该根据Linux的键码定义实现
-    // 当前为简化实现，实际应该参考X11或evdev的键码定义
     switch (keycode) {
-        case 8: return "BACKSPACE";
-        case 9: return "TAB";
-        case 13: return "ENTER";
-        case 16: return "SHIFT";
-        case 17: return "CTRL";
-        case 18: return "ALT";
-        case 27: return "ESCAPE";
-        case 32: return "SPACE";
-        case 127: return "DELETE";
+        case 0xff08: return "BACKSPACE";
+        case 0xff09: return "TAB";
+        case 0xff0d: return "ENTER";
+        case 0xff13: return "PAUSE";
+        case 0xff14: return "SCROLL_LOCK";
+        case 0xff1b: return "ESCAPE";
+        case 0xff50: return "HOME";
+        case 0xff51: return "LEFT_ARROW";
+        case 0xff52: return "UP_ARROW";
+        case 0xff53: return "RIGHT_ARROW";
+        case 0xff54: return "DOWN_ARROW";
+        case 0xff55: return "PAGE_UP";
+        case 0xff56: return "PAGE_DOWN";
+        case 0xff57: return "END";
+        case 0xff61: return "PRINT_SCREEN";
+        case 0xff63: return "INSERT";
+        case 0xff7f: return "NUM_LOCK";
+        case 0xff8d: return "KP_ENTER";
+        case 0xff95: return "KP_7";
+        case 0xff96: return "KP_4";
+        case 0xff97: return "KP_1";
+        case 0xff98: return "KP_8";
+        case 0xff99: return "KP_5";
+        case 0xff9a: return "KP_2";
+        case 0xff9b: return "KP_9";
+        case 0xff9c: return "KP_6";
+        case 0xff9d: return "KP_3";
+        case 0xff9e: return "KP_0";
+        case 0xffaa: return "MULTIPLY";
+        case 0xffab: return "ADD";
+        case 0xffad: return "SUBTRACT";
+        case 0xffae: return "DECIMAL";
+        case 0xffaf: return "DIVIDE";
+        case 0xffbe: return "F1";
+        case 0xffbf: return "F2";
+        case 0xffc0: return "F3";
+        case 0xffc1: return "F4";
+        case 0xffc2: return "F5";
+        case 0xffc3: return "F6";
+        case 0xffc4: return "F7";
+        case 0xffc5: return "F8";
+        case 0xffc6: return "F9";
+        case 0xffc7: return "F10";
+        case 0xffc8: return "F11";
+        case 0xffc9: return "F12";
+        case 0xffe1: return "LEFT_SHIFT";
+        case 0xffe2: return "RIGHT_SHIFT";
+        case 0xffe3: return "LEFT_CONTROL";
+        case 0xffe4: return "RIGHT_CONTROL";
+        case 0xffe5: return "CAPS_LOCK";
+        case 0xffe9: return "LEFT_ALT";
+        case 0xffea: return "RIGHT_ALT";
+        case 0xffeb: return "LEFT_META";
+        case 0xffec: return "RIGHT_META";
+        case 0xffed: return "CONTEXT_MENU";
+        case 0xffff: return "DELETE";
+        case 0x0020: return "SPACE";
         default:
-            if (keycode >= 48 && keycode <= 57) {
-                return String::chr('0' + (keycode - 48));
-            } else if (keycode >= 65 && keycode <= 90) {
-                return String::chr('A' + (keycode - 65));
-            } else if (keycode >= 97 && keycode <= 122) {
-                return String::chr('a' + (keycode - 97));
+            if (keycode >= 0x30 && keycode <= 0x39) {
+                return String::chr('0' + (keycode - 0x30));
+            } else if (keycode >= 0x41 && keycode <= 0x5a) {
+                return String::chr('A' + (keycode - 0x41));
+            } else if (keycode >= 0x61 && keycode <= 0x7a) {
+                return String::chr('A' + (keycode - 0x61));
             }
             return "UNKNOWN";
     }

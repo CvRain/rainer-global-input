@@ -30,6 +30,8 @@ private:
   
 #if _WIN32
   bool hookInitialized = false;
+#elif defined (__linux__) || defined (__unix__)
+  bool hookInitialized = false;
 #endif
 };
 } // namespace godot

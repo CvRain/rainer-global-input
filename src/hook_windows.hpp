@@ -7,8 +7,8 @@
 #include <godot_cpp/templates/vector.hpp>
 #include "key_event.hpp"
 
-// 声明一个Vector用于存储按键事件
-extern godot::Vector<godot::KeyEvent> keyEventVector;
+// 声明一个函数用于获取按键事件Vector
+godot::Vector<godot::KeyEvent>& get_key_event_vector();
 
 // 声明初始化和处理函数
 void initKeyboardHook();

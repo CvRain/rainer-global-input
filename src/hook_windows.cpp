@@ -6,8 +6,11 @@
 
 using namespace godot;
 
-// 定义按键事件Vector
-Vector<KeyEvent> keyEventVector;
+// 定义并获取按键事件Vector
+godot::Vector<godot::KeyEvent>& get_key_event_vector() {
+    static Vector<KeyEvent> key_event_vector;
+    return key_event_vector;
+}
 HHOOK keyboardHook = nullptr;
 
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
@@ -19,7 +22,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
         String keyname = mapping->get_key_name(ks->vkCode);
         
         // 将按键码和键名添加到Vector中
-        keyEventVector.push_back(KeyEvent(ks->vkCode, keyname));
+        get_key_event_vector().push_back(KeyEvent(ks->vkCode, keyname));
         
         // 输出调试信息
         print_line("Key pressed: " + itos(ks->vkCode) + " (" + keyname + ")");
@@ -35,7 +38,7 @@ void initKeyboardHook() {
 
 void processKeyEvents() {
     // 清空Vector
-    keyEventVector.clear();
+    get_key_event_vector().clear();
 }
 
 #endif
