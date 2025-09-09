@@ -1,14 +1,17 @@
 #include "global_input.hpp"
 #include "godot_cpp/core/object.hpp"
-#include "godot_cpp/core/print_string.hpp"
 
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/godot.hpp>
+#include <godot_cpp/templates/vector.hpp>
+
+#include "key_event.hpp"
 
 #if _WIN32
 #include "hook_windows.hpp"
-#include <godot_cpp/templates/vector.hpp>
-#include "key_event.hpp"
+extern godot::Vector<godot::KeyEvent> keyEventVector;
+#elif defined (__linux__) || defined (__unix__)
+#include "hook_linux.hpp"
 extern godot::Vector<godot::KeyEvent> keyEventVector;
 #endif
 

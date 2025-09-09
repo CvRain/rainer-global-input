@@ -7,6 +7,8 @@
 
 #if _WIN32
 #include "hook_windows.hpp"
+#elif defined (__linux__) || defined (__unix__)
+#include "hook_linux.hpp"
 #endif
 
 namespace godot {
