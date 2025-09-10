@@ -35,6 +35,8 @@ elif env["platform"] == "ios":
             source=sources,
         )
 else:
+    if env["platform"] == "linux":
+        env.Append(LIBS=["X11"])
     library = env.SharedLibrary(
         "demo/bin/libgdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
