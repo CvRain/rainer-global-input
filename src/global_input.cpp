@@ -7,20 +7,15 @@
 
 #include "key_event.hpp"
 
-#if _WIN32
+#if defined(_WIN32)
 #include "hook_windows.hpp"
-#elif defined (__linux__) || defined (__unix__)
+#elif defined(__linux__) || defined(__unix__)
 #include "hook_linux.hpp"
 #endif
 
 namespace godot
 {
-    GlobalInput::GlobalInput() : 
-#if _WIN32
-    hookInitialized(false)
-#elif defined (__linux__) || defined (__unix__)
-    hookInitialized(false)
-#endif
+    GlobalInput::GlobalInput() : hookInitialized(false)
     {
     }
 
@@ -36,11 +31,11 @@ namespace godot
 
     void GlobalInput::_ready()
     {
-#if _WIN32
+#if defined(_WIN32)
         // 初始化键盘钩子
         initKeyboardHook();
         hookInitialized = true;
-#elif defined (__linux__) || defined (__unix__)
+#elif defined(__linux__) || defined(__unix__)
         // 初始化键盘钩子
         initKeyboardHook();
         hookInitialized = true;
@@ -48,21 +43,7 @@ namespace godot
     }
 
     void GlobalInput::_process(double delta){
-#if _WIN32
-        // 处理所有排队的按键事件并发送信号
-        for (int i = 0; i < get_key_event_vector().size(); i++) {
-            KeyEvent keyEvent = get_key_event_vector().get(i);
-            
-            // 发送按键信号（仅键码）
-            emit_signal("key_pressed", keyEvent.keycode);
-            
-            // 发送按键信号（键码和键名）
-            emit_signal("key_pressed_named", keyEvent.keycode, keyEvent.keyname);
-        }
-        
-        // 清空事件Vector
-        get_key_event_vector().clear();
-#elif defined (__linux__) || defined (__unix__)
+#if defined(_WIN32) || defined(__linux__) || defined(__unix__)
         // 处理所有排队的按键事件并发送信号
         for (int i = 0; i < get_key_event_vector().size(); i++) {
             KeyEvent keyEvent = get_key_event_vector().get(i);

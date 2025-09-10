@@ -1,6 +1,7 @@
 #ifndef HOOK_WINDOWS_HPP
 #define HOOK_WINDOWS_HPP
-#if _WIN32
+
+#if defined(_WIN32)
 
 #include <Windows.h>
 #include <conio.h>
@@ -16,5 +17,6 @@ void processKeyEvents();
 
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
 
-#endif
-#endif
+#endif // defined(_WIN32)
+
+#endif // HOOK_WINDOWS_HPP

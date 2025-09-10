@@ -5,9 +5,11 @@
 #include "godot_cpp/classes/wrapped.hpp"
 #include "godot_cpp/variant/signal.hpp"
 
-#if _WIN32
+#include "key_event.hpp"
+
+#if defined(_WIN32)
 #include "hook_windows.hpp"
-#elif defined (__linux__) || defined (__unix__)
+#elif defined(__linux__) || defined(__unix__)
 #include "hook_linux.hpp"
 #endif
 
@@ -23,16 +25,10 @@ public:
   void _process(double delta) override;
 
 protected:
-
+  static void _bind_methods();
 
 private:
-  static void _bind_methods();
-  
-#if _WIN32
   bool hookInitialized = false;
-#elif defined (__linux__) || defined (__unix__)
-  bool hookInitialized = false;
-#endif
 };
 } // namespace godot
 

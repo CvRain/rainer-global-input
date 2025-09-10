@@ -2,7 +2,7 @@
 #include <godot_cpp/core/print_string.hpp>
 #include "key_event.hpp"
 
-#if _WIN32
+#if defined(_WIN32)
 
 using namespace godot;
 
@@ -41,4 +41,4 @@ void processKeyEvents() {
     get_key_event_vector().clear();
 }
 
-#endif
+#endif // defined(_WIN32)

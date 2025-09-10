@@ -3,6 +3,8 @@
 #include <cstring>
 #include <thread>
 
+#if defined (__linux__) || defined (__unix__)
+
 using namespace godot;
 
 // 定义并获取按键事件Vector
@@ -90,3 +92,5 @@ void processKeyEvents() {
     // 清空Vector
     get_key_event_vector().clear();
 }
+
+#endif
